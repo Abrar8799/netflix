@@ -1,8 +1,7 @@
 import React from 'react';
 import { Container , Inner , Pane ,Title , SubTitle , Image ,Item } from './styles/pagestyle.js';
 
-const Jumbotron = ( { children , direction = 'row' , ...restProp })=>  {
-    
+export default function  Jumbotron ( { children , direction = 'row' , ...restProp })  {
     return (
         <div>
             <Item {...restProp}>
@@ -14,7 +13,7 @@ const Jumbotron = ( { children , direction = 'row' , ...restProp })=>  {
     )
     }
 
-    export default Jumbotron;
+    
 
     Jumbotron.Container = function jumbotroncontain ({ children ,...restProps}){
         return  <Container {...restProps}>{children}</Container>

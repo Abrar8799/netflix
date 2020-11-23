@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from './global-style';
 
 ReactDOM.render(<>
-
     <GlobalStyles />
     <App /> 
     </>,
