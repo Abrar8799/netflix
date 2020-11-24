@@ -1,9 +1,12 @@
 import React , { useState , useContext , createContext } from 'react';
-import { Container , Inner , Title , Frame , Item , Header ,Body} from './accordionstyle.js';
+import {Container , Inner ,Title , Frame , Item , Header ,Body} from './style/Accostyle.js';
 
 const toggleContext=createContext();
 
-  function Accordion ({children , ...restProps }) {
+
+
+
+function Accordion ({children , ...restProps }) {
     return (
          <Container {...restProps}>
              <Inner>{children}</Inner>
@@ -22,19 +25,28 @@ Accordion.Frame = function AccordionFrame({children , ...restProps}){
 }
 
 Accordion.Item = function AccordionItem({children , ...restProps}){
-    const [toggleShow , settoggle]=useState(false);
-    return <toggleContext.Provider value={{toggleShow,settoggle}}
-    ><Item {...restProps}>{children}</Item></toggleContext.Provider>
+    const [toggleShow , ontoggle]= useState(false);
+    return <toggleContext.Provider value={{toggleShow ,ontoggle}}>
+        <Item {...restProps}>{children}</Item></toggleContext.Provider>
 }
 
 Accordion.Header = function AccordionHeader({children , ...restProps}){
-    const {toggleShow ,settoggle} =useContext(toggleContext);
-    return <Header onClick={()=>settoggle((toggleShow )=>!toggleShow)} {...restProps}>{children}</Header>
+    const {toggleShow , ontoggle} = useContext (toggleContext);
+    return <Header 
+            onClick={()=> ontoggle(( toggleShow ) => ! toggleShow)} {...restProps}>
+           {children} 
+           <pre>{JSON.stringify(ontoggle ,null ,2)} </pre>
+          
+           {
+               toggleShow ? (<img src='/icons/close-slim1.jpg' alt='add'/>)
+                     :
+               (<img src='/icons/add1.jpg' alt='close-slim'/>)
+           }
+           </Header>
 }
 Accordion.Body= function AccordionBody({children ,...restProps}){
-    const {toggleShow}=useContext(toggleContext);
+    const {toggleShow}=useContext(toggleContext);  
     return toggleShow ? <Body {...restProps}>{children}</Body>:null;
 }
-
 
 
