@@ -4,6 +4,7 @@ export const Container = styled.div`
 display:flex;
 /* flex-direction:row; */
 justify-content:center;
+align-content:space-between;
 height:100%;
 flex-wrap:wrap;
 margin-top:20px;
@@ -21,7 +22,7 @@ height:100%;
 background:#e23255;
 color:white;
 text-transform:uppercase;
-padding:0 42px;
+padding:5px 4px;
 font-size:26px;
 border:0px;
 cursor: pointer;
@@ -30,43 +31,46 @@ cursor: pointer;
 }
 
 @media (max-width:1000px){
+    display:flex;
     width:300px;
     height: 40px;
     font-size: 10px;
     margin-top: 0px;
-    /* width:150px;
-    height:40px;
-    font-size:16px;
-    margin-top:20px;
-    font-weight:bold; */
-    /* img{
-    margin-left:10px;
-    filter:brightness(0) invert(1);
-    width:24px; */
 }
 
-}
-
+    @media (max-width:678px){
+   input{
+        display:flex;
+    width:200px;
+    height: 40px;
+    font-size: 10px;
+    margin-top: 0px;
+    }
+    }
+   
 img{
-    margin-left:10px;
+    margin-left:40px;
     filter:brightness(0) invert(1);
     width:24px;
 }
 
-
-
-@media(max-width:1000px) {
+@media(max-width:600px) {
     width:16px;
+    
+    
 }
 `;
 
 export const Input  = styled.input`
 max-width:450px;
-padding:12px;
+padding:11px;
 width:100%;
 height:70%;
+align-content:space-between;
 box-sizing:border-box;
-/* margin-left:-115px; */
+
+
+
 `;
 
 export const Text = styled.p`

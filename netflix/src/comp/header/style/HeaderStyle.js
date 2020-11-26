@@ -2,6 +2,9 @@ import styled from 'styled-components/macro';
 import {Link as ReactRouterLink} from 'react-router-dom';
 
 export const Background=styled.div`
+display:flex;
+flex-direction:column;
+background:url(${({src})=> src ? './images/misc/${src}.jpg':'./images/misc/homebg.jpg'}) no-repeat;
 
 `;
 
@@ -10,19 +13,23 @@ export const Frame=styled.div`
 `; 
 
 export const Container = styled.div`
-
+/* 
 display:flex;
 margin:0 56px;
 height:64px;
 padding:18px 0;
 justify-content:space-between;
-align-items:center;
+align-items:center; */
 
+a{
+    dislplay:flex;
+}
+
+@media (max-width:1000px) {
+    margin:0.30px;
+}
 `; 
 
-export const Container=styled.div`
-
-`;
 
 export const Button=styled(ReactRouterLink)`
 display:block;
@@ -33,6 +40,7 @@ color:white;
 border:0;
 font-size:15px;
 border-radius:3px;
+padding:6px 17px;
 cursor: pointer;
 text-decoration:none;
 box-sizing:border-box;

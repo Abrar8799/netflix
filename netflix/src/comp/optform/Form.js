@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container , Button , Input , Text ,Break } from './styleForm/Formstyle'
 
-
 function Form ({ children , ...restProps}) {
     return (    <Container {...restProps}> {children} </Container>
     )
