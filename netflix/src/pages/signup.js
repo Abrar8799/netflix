@@ -2,14 +2,14 @@ import React, { useState , useContext } from 'react';
 import {useHistory} from 'react-router-dom';
 import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header';
-import { Form, SignForm } from '../comp';
+import { SignForm } from '../comp';
 import { ContextFirebase }  from '../context/firebaseContext';
 import * as ROUTES from '../constant/route.js'
 
 
 function Signup() {
 
-  const { history } = useHistory();
+  const  history   = useHistory();
   const { firebase } = useContext(ContextFirebase);
 
   const [firstName , setName] = useState('');
@@ -17,50 +17,76 @@ function Signup() {
   const [password , setpassword] = useState('');
   const [error , seterror] = useState('');
 
-  const isInvalid = password == ' ' || emailaddress == ' ';
+  const isInvalid = firstName == ' ' || password == ' ' || emailaddress == '';
 
   const HandleSubmit =(event)=> {
       event.preventDefault();
 
+      firebase
+      .auth()
+      .createUserWithEmailAndPassword(emailaddress,password)
+      .then((result) => result.user.updateProfile({
+          displayName:firstName
+        }) 
+        .then(()=>{
+          history.push(ROUTES.BROWSER);
+        })
+        )
+
+        .catch((error)=>{
+          setName('');
+          setemailaddress('');
+          setpassword('');
+            seterror(error.message);
+        })
+
   }
 
   return (
-    
+        <>
         <HeaderContainer>
+        <SignForm>
+         
+         <SignForm.Title>Sign Up</SignForm.Title>
+           {!error && <SignForm.Error>{error}</SignForm.Error>}
+           <SignForm.Base onSubmit = {HandleSubmit}>
 
-          <Form.Title> Sign Up </Form.Title>
-          {error && <SignForm.Error>{error}</SignForm.Error>}
+           <SignForm.Input
+           placeholder="Enter your Name"
+           autoComplete="on"
+           value={firstName} onChange={({target})=>setName(target.value)}
+           />
 
-            <SignForm.Base onSubmit = {HandleSubmit} method="POST">
-                <SignForm.Input
-                placeholder="First-name"
-                value={firstName}
-                onChange={({target})=> setName(target.value)}
-                />
+           <SignForm.Input
+           placeholder="Enter your Email"
+           autoComplete="off"
+           value={emailaddress} onChange={({target})=>setemailaddress(target.value)}
+           />
 
-                <SignForm.Input
-                placeholder="Enter your Email"
-                value={emailaddress}
-                onChange={({target})=> setemailaddress(target.value)}
-                />
+           <SignForm.Input
+           placeholder="Enter your password"
+           autoComplete="off"
+           value={password} onChange={({target})=>setpassword(target.value)}
+           />
 
-                <SignForm.Input
-                 placeholder="Enter your password"
-                 value={password}
-                 autoComplete="off"
-                 onChange={({target})=> setpassword(target.value)}
-                />
+           <SignForm.Submit disabled={isInvalid}> Sign Up</SignForm.Submit>
 
+           </SignForm.Base>
 
+           <SignForm.Text>All ready Netflix Member ?
+           <SignForm.Link to='/signin'>   Sign Up </SignForm.Link>
+           <SignForm.TextSmall>
+               This page Protected By Google
+           </SignForm.TextSmall>
+           </SignForm.Text>
+           
 
-                <SignForm.Submit disabled={isInvalid} type="submit">Sign Up</SignForm.Submit>
-                    <SignForm.Text>
-                        Already a users <Form.Link to="/signin">Sign In</Form.Link>
-                    </SignForm.Text>
-            </SignForm.Base>
-          
-      </HeaderContainer>
+         </SignForm>
+       </HeaderContainer>
 
+       <FooterContainer />
+
+        </>
   )
 
 

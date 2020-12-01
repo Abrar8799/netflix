@@ -14,10 +14,10 @@ function Signin () {
     const [password, SetPassword] = useState();
     const [error, setError] = useState('');
 
-        const isInvalid = password == '' || email =='';
+        const isInvalid = password === '' || email ==='';
+
         const HandleSubmit =(Event) => {
             Event.preventDefault();
-
             firebase
             .auth()
             .signInWithEmailAndPassword(email,password)
