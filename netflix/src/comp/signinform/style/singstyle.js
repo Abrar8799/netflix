@@ -25,6 +25,7 @@ width:100%;
 
 
 export const Error = styled.div`
+background-color:white;
 border-radius:4px;
 font-size:14px;
 margin:0 0 16px;

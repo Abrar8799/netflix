@@ -6,7 +6,7 @@ import { SignForm } from '../comp';
 import { ContextFirebase }  from '../context/firebaseContext';
 import * as ROUTES from '../constant/route.js'
 
-function Signin() {
+function Signin () {
         const history = useHistory();
     const {firebase} = useContext(ContextFirebase);
 
@@ -20,7 +20,7 @@ function Signin() {
 
             firebase
             .auth()
-            .signInWthEmailAndPassword(email,password)
+            .signInWithEmailAndPassword(email,password)
             .then(()=>{
           history.push(ROUTES.BROWSER);
             })
@@ -32,7 +32,8 @@ function Signin() {
 
         };
 
-    return (
+    return  (
+    
         <>
       
             <HeaderContainer>
@@ -44,11 +45,13 @@ function Signin() {
 
                 <SignForm.Input
                 placeholder="Enter your Email"
+                autoComplete="on"
                 value={email} onChange={({target})=>setEmail(target.value)}
                 />
 
                 <SignForm.Input
-                placeholder="Enter your Email"
+                placeholder="Enter your Passoword"
+                autoComplete="off"
                 value={password} onChange={({target})=>SetPassword(target.value)}
                 />
 
