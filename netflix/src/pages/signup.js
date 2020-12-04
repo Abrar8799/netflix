@@ -74,7 +74,7 @@ function Signup() {
            </SignForm.Base>
 
            <SignForm.Text>All ready Netflix Member ?
-           <SignForm.Link to='/signin'>   Sign Up </SignForm.Link>
+           <SignForm.Link to='/signin'>   Sign In </SignForm.Link>
            <SignForm.TextSmall>
                This page Protected By Google
            </SignForm.TextSmall>
