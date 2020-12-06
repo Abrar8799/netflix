@@ -3,9 +3,11 @@ import { BrowserRouter as Router ,Switch } from 'react-router-dom';
 import { Home , Browser , Signup , Signin } from './pages';
 import * as ROUTES from './constant/route';
 import { Islogged , ProtectRoute} from  './helper/Routes.js'
+import { UserAuthenticate } from './hooks';
+
 
 export default function App(){
-  const user=null;
+  const  {user} = UserAuthenticate();
   return (
     <>
     <div>

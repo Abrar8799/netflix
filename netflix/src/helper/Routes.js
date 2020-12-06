@@ -10,8 +10,7 @@ function Islogged({user , Isloggeded , children , ...rest}) {
                      }
                     if(user){ 
                         return (<Redirect to={{pathname:Isloggeded}}/>);
-                }
-            
+                }          
                 }}
                 />          
 }
@@ -19,7 +18,6 @@ function Islogged({user , Isloggeded , children , ...rest}) {
   function ProtectRoute({  user , children , ...rest}) {
      return <Route {...rest}
                         render={({location})=> {
-
                               if(user){
                                  return children;
                                 }
