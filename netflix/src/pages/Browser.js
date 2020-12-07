@@ -1,15 +1,13 @@
 import React from 'react';
 import { Datacontent } from '../hooks';
+import { SelectionMapFilter } from  '../utilities'
+
 function Browser() {
     const {series} = Datacontent('series');
     const {films} = Datacontent('films');
-    console.log(series);
-    console.log(films);
-    return (
-        <div>
+            const slides = SelectionMapFilter({series , films});
         
-        </div>
-    )
+    return <BrowserContainer slides={slides}/>;
 }
 
 export default Browser
