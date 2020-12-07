@@ -26,7 +26,8 @@ function Signup() {
       .auth()
       .createUserWithEmailAndPassword(emailaddress,password)
       .then((result) => result.user.updateProfile({
-          displayName:firstName
+          displayName:firstName,
+          photoURL:Math.random(Math.random(2)*5)-1;
         }) 
         .then(()=>{
           history.push(ROUTES.BROWSER);
